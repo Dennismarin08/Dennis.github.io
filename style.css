@@ -132,17 +132,52 @@ button:hover {
 
 /* Responsive imágenes y carta para móviles */
 @media (max-width: 600px) {
-  .carta {
-    width: 98%;
-    max-width: 98%;
-    left: 1%;
-    right: 1%;
+  body {
+    overflow: auto;
+    padding-bottom: 40px;
   }
-  .fotos img {
-    width: 95px;
-    margin: 5px;
+  .sobre {
+    width: 95vw;
+    height: 120px;
+    margin: 40px auto;
+  }
+  .sobre .tapa {
+    height: 50px;
+  }
+  .texto-inicio {
+    margin-top: 70px;
+    font-size: 16px;
+  }
+  .carta {
+    position: static;
+    width: 98vw;
+    max-width: 98vw;
+    margin: 10px auto;
+    top: 0;
+    left: 0;
+    right: 0;
   }
   .papel {
+    padding: 10px;
+  }
+  .fotos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+  .fotos img {
+    width: 90px;
+    margin: 3px;
+  }
+  button {
+    width: 90vw;
+    max-width: 300px;
+    font-size: 18px;
+    margin: 10px auto;
+    display: block;
+  }
+  .final {
     padding: 10px;
   }
   .final img {
