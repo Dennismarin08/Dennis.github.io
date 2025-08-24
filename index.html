@@ -1,287 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MENORCITO</title>
-  <style>
-    :root{
-      --bg1:#0f0c29; --bg2:#2c72ac; --bg3:#24243e;
-      --photo-bg:#1b1b2f; /* Fondo dentro del recuadro que combine */
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
-      background: linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
-      color:#fff; overflow:hidden;
-    }
-    .wrap{
-      position:relative; height:100%; width:100%;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      padding:20px; z-index:2;
-    }
-    h1{margin:0 0 6px 0; font-size: clamp(24px, 4.5vw, 44px); text-align:center; letter-spacing:.5px;}
-    p.sub{margin:0 0 14px 0; opacity:.9; text-align:center; font-size: clamp(14px, 2.6vw, 18px);}
-
-    /* Imagen decorativa */
-    .decor{
-      position:fixed;
-      bottom:10px; right:10px;
-      width: clamp(80px, 20vw, 160px);
-      opacity:0.9;
-      z-index:1;
-    }
-
-    .stage{
-      position:relative; width:min(92vw, 520px); aspect-ratio: 4/5;
-      border-radius:24px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,.35);
-      background:var(--photo-bg);
-      border:1px solid rgba(255,255,255,.15);
-    }
-    .slide{
-      position:absolute; inset:0; 
-      background-position:center; 
-      background-size:contain;   /* Fotos centradas y sin recortar */
-      background-repeat:no-repeat;
-      background-color:var(--photo-bg); /* Color en lo sobrante */
-      opacity:0; transition:opacity .8s ease;
-    }
-    .slide.show{opacity:1;}
-    .top-fade, .bottom-fade{
-      position:absolute; left:0; right:0; height:20%;
-      pointer-events:none;
-      background:linear-gradient(to bottom, rgba(15,12,41,.9), transparent);
-      z-index:3;
-    }
-    .bottom-fade{
-      bottom:0; top:auto;
-      background:linear-gradient(to top, rgba(15,12,41,.9), transparent);
-    }
-    .controls{
-      margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
-    }
-    .btn{
-      appearance:none; border:none; cursor:pointer;
-      padding:12px 18px; border-radius:999px; font-weight:600;
-      background:rgba(255,255,255,.15); color:white;
-      box-shadow:0 6px 18px rgba(0,0,0,.25); backdrop-filter: blur(4px);
-      transition:transform .08s ease, background .2s ease, box-shadow .2s ease, opacity .3s ease;
-    }
-    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.22);}
-    .btn:active{transform:translateY(0);}
-    .btn[disabled]{opacity:.55; cursor:not-allowed;}
-    .hint{font-size:12px; opacity:.85; margin-top:6px; text-align:center}
-    .hearts{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0;}
-    .heart{
-      position:absolute; width:14px; height:14px; transform:rotate(45deg);
-      animation: floatUp linear forwards;
-      opacity:.9;
-    }
-    .heart::before, .heart::after{
-      content:""; position:absolute; width:14px; height:14px; border-radius:50%;
-      background: currentColor;
-    }
-    .heart::before{left:-7px;}
-    .heart::after{top:-7px;}
-    @keyframes floatUp{
-      0%{transform: translateY(0) scale(.8) rotate(45deg); opacity:.0;}
-      10%{opacity:.9;}
-      100%{transform: translateY(-130vh) scale(1.4) rotate(45deg); opacity:0;}
-    }
-    .done{
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-      background:rgba(0,0,0,.6); color:white; text-align:center; padding:24px;
-      font-size: clamp(18px, 3.5vw, 28px);
-      opacity:0; pointer-events:none; transition:opacity .5s ease;
-    }
-    .done.show{opacity:1; pointer-events:auto;}
-    .progress{
-      width:min(92vw,520px); height:6px; border-radius:999px; background:rgba(255,255,255,.15);
-      overflow:hidden; margin-top:10px;
-    }
-    .bar{height:100%; width:0%; background:rgba(255,255,255,.85); transition:width .2s linear;}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta para mi linda muchachita</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <h1>OLI JIJIJSIJSIJSISJISJIS </h1>
-    <p class="sub">Tienes que undirle ahi donde dice reproducir porfa </p>
+  <!-- Música -->
+  <audio id="cancion" src="linda_muchachita.mp4"></audio>
 
-    <div class="stage" id="stage" aria-label="Presentación de fotos">
-      <div class="top-fade"></div>
-      <div class="bottom-fade"></div>
-      <div class="done" id="done">La canción terminó 💖<br>Gracias por tantos momentos juntos.</div>
-    </div>
+  <!-- Fondo corazones -->
+  <div class="corazones"></div>
 
-    <div class="controls">
-      <button class="btn" id="play">▶️ Reproducir</button>
-      <button class="btn" id="pause" disabled>⏸️ Pausar</button>
-      <button class="btn" id="resume" disabled>⏯️ Reanudar</button>
-      <button class="btn" id="restart" disabled>🔁 Reiniciar</button>
-    </div>
-    <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
-    <div class="hint">Por políticas del teléfono, quizá debas tocar “Reproducir” para activar el audio.</div>
-
-    <div class="hearts" id="hearts" aria-hidden="true"></div>
+  <!-- Sobre inicial -->
+  <div class="sobre" onclick="abrirCarta()">
+    <div class="tapa"></div>
+    <div class="cuerpo"></div>
+    <p class="texto-inicio">💌 Toca para abrir tu carta, linda muchachita 💕</p>
   </div>
 
-  <!-- Imagen decorativa (osito) -->
-  <img src="IMGS/polar.jpg" alt="Decoración osito" class="decor" />
+  <!-- Carta desplegable -->
+  <div id="carta" class="carta">
+    <div class="papel">
+      <h1>Para mi linda muchachita 💖</h1>
+      <p>
+Se que no estamos pasando por el mejor momento
+y me duele estar asi contigo porque
+aunque no lo creas eres muy importante para mi
+y eres el amor de mi vida y no quiero perderte 
+todos estos años que llevo contigo de buenos y malos momentos
+me e sentido muy especial a tu lado y quiero que seas la persona
+que me acompañe por mas años en mi vida y si deseas apartarte respetare tu decision
+pero quiero que sepas que aunque no estes conmigo te amo mucho
+porque eres mi linda muchachita jijijiiijijij <br>
 
-  <!-- AUDIO -->
-  <audio id="song" preload="auto">
-    <source src="audio/audio.mp4" type="audio/mpeg">
-    Tu dispositivo no soporta el audio 😭
-  </audio>
+De Dennisisto el lindito
+      </p>
+      <div class="fotos">
+        <img src="img/foto1.jpeg" alt="Recuerdo 1">
+        <img src="img/foto9.jpeg" alt="Recuerdo 2">
+        <img src="img/foto6.jpeg" alt="Recuerdo 3">
+      </div>
+      <button onclick="finalSorpresa()">Ver más 💕</button>
+    </div>
+  </div>
 
-  <script>
-    const photos = [
-      "imgs/foto1.jpeg",
-      "imgs/foto2.jpeg",
-      "imgs/foto3.jpeg",
-      "imgs/foto4.jpeg",
-      "imgs/foto5.jpeg",
-      "imgs/foto6.jpeg",
-      "imgs/foto7.jpeg",
-      "imgs/foto8.jpeg",
-      "imgs/foto9.jpeg",
-      "imgs/foto10.jpeg"
-    ];
-    const PHOTO_TIME = 3000;
-    const HEARTS_PER_SEC = 6;
+  <!-- Pantalla final -->
+  <div id="final" class="final oculto">
+    <h2>Eres mi linda muchachita ❤️</h2>
+    <img src="img/foto7.jpeg" alt="Foto especial">
+    <p>Siempre estarás en mi corazón. Te amo 💌</p>
+  </div>
 
-    const stage = document.getElementById("stage");
-    const done = document.getElementById("done");
-    const playBtn = document.getElementById("play");
-    const pauseBtn = document.getElementById("pause");
-    const resumeBtn = document.getElementById("resume");
-    const restartBtn = document.getElementById("restart");
-    const bar = document.getElementById("bar");
-    const hearts = document.getElementById("hearts");
-    const song = document.getElementById("song");
-
-    let slides = [];
-    let idx = 0;
-    let timer = null;
-    let heartsTimer = null;
-    let started = false;
-    let totalDuration = 0;
-
-    function createSlides(){
-      stage.querySelectorAll(".slide").forEach(el=>el.remove());
-      slides = photos.map((src,i)=>{
-        const d = document.createElement("div");
-        d.className = "slide" + (i===0 ? " show" : "");
-        d.style.backgroundImage = `url('${src}')`;
-        stage.appendChild(d);
-        return d;
-      });
-      idx = 0;
-    }
-
-    function nextSlide(){
-      if(!slides.length) return;
-      slides[idx].classList.remove("show");
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add("show");
-    }
-
-    function startShow(){
-      if(started) return;
-      started = true;
-      createSlides();
-      song.currentTime = 0;
-      song.play().then(()=>{ afterStart(); }).catch(()=>{ afterStart(); });
-    }
-
-    function afterStart(){
-      playBtn.disabled = true;
-      pauseBtn.disabled = false;
-      resumeBtn.disabled = true;
-      restartBtn.disabled = false;
-      done.classList.remove("show");
-
-      clearInterval(timer);
-      timer = setInterval(nextSlide, PHOTO_TIME);
-
-      totalDuration = isFinite(song.duration) && song.duration > 0 ? song.duration : 0;
-      updateProgress();
-      if(heartsTimer) clearInterval(heartsTimer);
-      heartsTimer = setInterval(spawnHearts, 1000 / HEARTS_PER_SEC);
-    }
-
-    function pauseShow(){
-      song.pause();
-      clearInterval(timer);
-      timer = null;
-      pauseBtn.disabled = true;
-      resumeBtn.disabled = false;
-    }
-
-    function resumeShow(){
-      song.play().catch(()=>{});
-      if(!timer) timer = setInterval(nextSlide, PHOTO_TIME);
-      pauseBtn.disabled = false;
-      resumeBtn.disabled = true;
-    }
-
-    function restartShow(){
-      song.currentTime = 0;
-      started = false;
-      startShow();
-    }
-
-    function updateProgress(){
-      const tick = ()=>{
-        if(totalDuration === 0 && isFinite(song.duration) && song.duration > 0){
-          totalDuration = song.duration;
-        }
-        const pct = totalDuration ? (song.currentTime / totalDuration) * 100 : 0;
-        bar.style.width = Math.min(100, pct) + "%";
-        requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    }
-
-    function spawnHearts(){
-      const h = document.createElement("div");
-      h.className = "heart";
-      const size = 10 + Math.random()*14;
-      h.style.width = size + "px";
-      h.style.height = size + "px";
-      const left = Math.random()*100;
-      h.style.left = left + "vw";
-      const colors = ["#ff6b6b","#ff8fab","#ffd6a5","#ffc6ff","#fdb9c8","#ffcad4"];
-      h.style.color = colors[(Math.random()*colors.length)|0];
-      const dur = 6 + Math.random()*6;
-      h.style.animationDuration = dur + "s";
-      hearts.appendChild(h);
-      setTimeout(()=>h.remove(), dur*1000 + 500);
-    }
-
-    song.addEventListener("ended", ()=>{
-      clearInterval(timer);
-      timer = null;
-      playBtn.disabled = true;
-      pauseBtn.disabled = true;
-      resumeBtn.disabled = true;
-      restartBtn.disabled = false;
-      done.classList.add("show");
-      // Oculta el mensaje después de 8 segundos
-      setTimeout(()=>{ done.classList.remove("show"); }, 8000);
-    });
-
-    playBtn.addEventListener("click", startShow);
-    pauseBtn.addEventListener("click", pauseShow);
-    resumeBtn.addEventListener("click", resumeShow);
-    restartBtn.addEventListener("click", restartShow);
-
-    photos.forEach(src=>{const i=new Image(); i.src=src;});
-  </script>
-  <footer>
-    <p>&copy; PAGINA HECHA POR DM08</p>
-    <p>Todos los derechos reservados</p>
-  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
