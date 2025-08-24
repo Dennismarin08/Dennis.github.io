@@ -129,3 +129,23 @@ button:hover {
   0% { top: 100%; opacity: 1; }
   100% { top: -10%; opacity: 0; }
 }
+
+/* Responsive imágenes y carta para móviles */
+@media (max-width: 600px) {
+  .carta {
+    width: 98%;
+    max-width: 98%;
+    left: 1%;
+    right: 1%;
+  }
+  .fotos img {
+    width: 95px;
+    margin: 5px;
+  }
+  .papel {
+    padding: 10px;
+  }
+  .final img {
+    width: 120px;
+  }
+}
