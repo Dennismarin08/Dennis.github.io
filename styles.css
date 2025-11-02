@@ -659,8 +659,115 @@ section, .card, .servicio, .testimonio {
     position: relative;
   }
 }
+/* ===== EMPRESAS ===== */
+.empresas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+}
+
+.empresa img {
+  width: 160px;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.empresa img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.08);
+}
+/* ===== CURRÍCULUM ===== */
+.curriculum {
+  text-align: center;
+  background: linear-gradient(120deg, #1a1a1a 70%, #7b2ff7 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #7b2ff7a0;
+  padding: 80px 30px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.curriculum h2 {
+  font-size: 2.4rem;
+  color: #f107a3;
+  text-shadow: 0 0 12px #7b2ff7, 0 0 4px #fff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.curriculum-text {
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  font-size: 1.1rem;
+  color: #e1d6f7;
+  line-height: 1.6;
+}
+
+.curriculum-card {
+  background: rgba(20, 20, 20, 0.85);
+  border-radius: 16px;
+  padding: 40px 25px;
+  box-shadow: 0 0 25px #7b2ff7a0, 0 0 12px #f107a340;
+  max-width: 500px;
+  margin: auto;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.curriculum-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 40px #f107a3, 0 8px 32px #7b2ff7;
+}
+
+.icono-cv {
+  font-size: 3rem;
+  color: #f107a3;
+  text-shadow: 0 0 12px #7b2ff7;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.curriculum-card h3 {
+  font-size: 1.6rem;
+  color: #f107a3;
+  margin-bottom: 10px;
+}
+
+.curriculum-card p {
+  font-size: 1rem;
+  color: #e1d6f7;
+  margin-bottom: 25px;
+}
+
+.btn-cv {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #f107a3, #7b2ff7);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: 0.3s ease;
+  box-shadow: 0 0 12px #7b2ff7a0;
+}
+
+.btn-cv:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px #f107a3, 0 0 20px #7b2ff7;
+  opacity: 0.95;
+}
+
 
 /* Oculta scroll cuando menú está abierto */
 body.menu-open {
   overflow: hidden;
+}
+.curriculum{
+  text-align: center;
+  font-size: 1.2rem;
 }
