@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoja de Vida | Dennis Marín</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #111 0%, #000 100%);
+      color: #e6e6e6;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .cv-container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+      animation: fadeIn 1.2s ease-in-out;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.6rem;
+      color: #ffd700;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #ccc;
+      font-style: italic;
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+    }
+
+    h2 {
+      color: #ffd700;
+      border-left: 4px solid #ffd700;
+      padding-left: 10px;
+      margin-top: 40px;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+    }
+
+    p, li {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    .info {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .info a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+    }
+
+    li::before {
+      content: "▹ ";
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .section-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin-top: 20px;
+      box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .section-box:hover {
+      transform: scale(1.01);
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 40px auto 0;
+      padding: 12px 30px;
+      background: #ffd700;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+      transition: 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #fff;
+      transform: translateY(-3px);
+    }
+    @media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background: radial-gradient(circle at top left, #111 0%, #000 100%) !important;
+    color: #e6e6e6 !important;
+  }
+  .cv-container {
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: none !important;
+  }
+  a {
+    color: #ffd700 !important;
+  }
+}
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cv-container">
+    <h1>Dennis Marín</h1>
+    <p class="subtitle">Desarrollador Web Junior | Frontend & Backend</p>
+
+    <div class="info">
+      <p>📍 Cali, Colombia</p>
+      <p>📧 <a href="mailto:a4ntiag0@gmail.com">a4ntiag0@gmail.com</a></p>
+      <p>💻 <a href="https://dennismarin08.github.io/Dennis.github.io/" target="_blank">Portafolio Web</a></p>
+      <p>💼 GitHub: <a href="https://github.com/DennisMarin08" target="_blank">github.com/DennisMarin08</a></p>
+    </div>
+
+    <h2>Sobre mí</h2>
+    <div class="section-box">
+      <p>
+        Técnico en Programación de Software del SENA, con experiencia en desarrollo de aplicaciones web usando 
+        <strong>HTML, CSS, JavaScript, PHP y MySQL</strong>.
+        He creado sistemas completos para restaurantes, parqueaderos y clínicas veterinarias, implementando funcionalidades 
+        de registro, control de usuarios, reportes y diseño responsive.
+      </p>
+      <p>
+        Cuento con <strong>2 años de experiencia laboral</strong> en la empresa <strong>Grupo Human</strong>, dedicada a la seguridad social y gestión empresarial,
+        donde desarrollé habilidades en trabajo en equipo, responsabilidad y atención al detalle.
+      </p>
+      <p>
+        Actualmente curso <strong>Programación en la Universidad Santiago de Cali</strong>, fortaleciendo mis conocimientos en desarrollo web y bases de datos.
+        Mi objetivo es seguir creciendo profesionalmente como <strong>Desarrollador Web Junior</strong>, aportando soluciones efectivas y creativas.
+      </p>
+    </div>
+
+    <h2>Experiencia Laboral</h2>
+    <div class="section-box">
+      <p><strong>Grupo Human</strong> – Empresa de Seguridad Social<br>
+      <em>Desarrollador Junior | 2024 - 2025</em><br>
+      Colaboré en la gestión y digitalización de procesos internos, apoyo técnico y diseño de herramientas web para la optimización administrativa.
+      </p>
+    </div>
+
+    <h2>Educación</h2>
+    <div class="section-box">
+      <p><strong>Técnico en Programación de Software</strong><br>
+        SENA – Cali, Colombia<br>
+        Finalizado en 2024
+      </p>
+      <p><strong>Programación</strong><br>
+        Universidad Santiago de Cali – En curso
+      </p>
+    </div>
+
+    <h2>Habilidades</h2>
+    <div class="section-box">
+      <ul>
+        <li>HTML5, CSS3, JavaScript, PHP, MySQL</li>
+        <li>Diseño web responsive y UI básica</li>
+        <li>Desarrollo de sistemas CRUD</li>
+        <li>Uso básico de Git y GitHub</li>
+        <li>Gestión de bases de datos en phpMyAdmin</li>
+        <li>Herramientas: VS Code, XAMPP, Canva</li>
+      </ul>
+    </div>
+
+    <h2>Idiomas</h2>
+    <div class="section-box">
+      <ul>
+        <li>Español — Nativo</li>
+        <li>Inglés — Básico / Técnico</li>
+      </ul>
+    </div>
+
+
+
+    <a href="#" class="download-btn"><i class="bx bx-download"></i> Descargar PDF</a>
+  </div>
+</body>
+</html>
